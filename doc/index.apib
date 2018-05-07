@@ -1,0 +1,89 @@
+FORMAT: 1A
+
+# IRC API
+
+A simplified RESTful API for interacting with persistent Internet Relay Chat connections.
+
+# Group Networks
+
+A "network" represents a user-defined connection to IRC. Each network has one or more IRC
+servers to which the API will connect.
+
+## Networks collection [/networks]
+### List existing networks [GET]
++ Response 200 (application/json)
+### Add a new network [POST]
++ Response 204
++ Response 400
+
+## Network information [/networks/{network}]
+### Get network information [GET]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
++ Response 200 (application/json)
++ Response 404
+### Update network information [POST]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
++ Response 204
++ Response 400
++ Response 404
+### Delete network [DELETE]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
++ Response 204
++ Response 404
+
+# Group Chats
+
+A chat represents either an IRC channel or a private message with another IRC user.
+
+## Chats collection [/networks/{network}/chats]
+### List existing chats [GET]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
++ Response 200 (application/json)
++ Response 404
+### Create new chat [POST]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
++ Response 200 (application/json)
++ Response 400
++ Response 404
+
+## Chat information [/networks/{network}/chats/{chat}]
+### Get chat information [GET]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
+    + chat: `dmdirc` (string) - The name of the chat.
++ Response 200 (application/json)
++ Response 404
+### Delete chat [DELETE]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
+    + chat: `dmdirc` (string) - The name of the chat.
++ Response 204
++ Response 404
+
+## Chat messages [/networks/{network}/chats/{chat}/messages]
+### Get chat messages [GET]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
+    + chat: `dmdirc` (string) - The name of the chat.
++ Response 200 (application/json)
++ Response 404
+### Send chat message [POST]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
+    + chat: `dmdirc` (string) - The name of the chat.
++ Response 200 (application/json)
++ Response 400
++ Response 404
+
+## Chat users [/networks/{network}/chats/{chat}/users]
+### List chat users [GET]
++ Parameters
+    + network: `quakenet` (string) - The name of the network.
+    + chat: `dmdirc` (string) - The name of the chat.
++ Response 200 (application/json)
++ Response 404
